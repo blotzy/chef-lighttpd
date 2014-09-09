@@ -1,4 +1,9 @@
 $HTTP["host"] == "<%= @params[:server_name] %>" {
         server.document-root = "<%= @params[:doc_root] %>"
-        dir-listing.activate = "enable"
-        }
+        dir-listing.activate = "<%= @params[:dir_listing] %>"
+		url.rewrite = (
+		<% @params[:url_rewrites].each_pair do |old, new| %>
+		  <%= "  \"^#{old}\" => \"#{new}\"," %>
+		<% end %>
+		)
+}
