@@ -10,15 +10,8 @@
 # - saves memory
 
 server.modules		   = (
-			      "mod_access",
-			      "mod_alias",
-			      "mod_accesslog",
-			      "mod_rewrite",
-			      "mod_redirect",
-			      "mod_status",
-			      "mod_compress",
-			      "mod_expire"
-			      )
+        <%= node[:lighttpd][:modules].map { |m| "\"#{m}\""}.join ",\n        " %>
+)
 
 ## a static document-root, for virtual-hosting take look at the
 ## server.virtual-* options
@@ -50,7 +43,7 @@ accesslog.filename         = "<%= node[:lighttpd][:log_dir] %>/access.log"
 # ~    is for backupfiles from vi, emacs, joe, ...
 # .inc is often used for code includes which should in general not be part
 #      of the document-root
-url.access-deny            = ( "~", ".inc" )
+url.access-deny            = ( <%= node[:lighttpd][:access_deny].map { |a| "\"#{a}\"" }.join ', ' %> )
 
 
 

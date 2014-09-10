@@ -162,3 +162,13 @@ attribute "lighttpd/debug/log_response_header",
   :display_name => "debug log response header",
   :description => "Log response headers",
   :default => "disable"
+
+attribute "lighttpd/modules",
+  :display_name => "lighttpd modules enabled",
+  :description => "mods in the server.modules section",
+  :default => [ "mod_access", "mod_alias", "mod_accesslog", "mod_rewrite", "mod_redirect", "mod_status", "mod_compress", "mod_expire" ]
+
+attribute "lighttpd/access_deny",
+  :display_name => "access deny",
+  :description => "file types to access deny",
+  :default => [ "~", ".inc" ]

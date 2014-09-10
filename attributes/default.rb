@@ -44,3 +44,5 @@ default[:lighttpd][:debug][:proxy] = "disable"
 default[:lighttpd][:debug][:dump_unknown_headers] = "disable"
 default[:lighttpd][:url_rewrites] = { }
 default[:lighttpd][:url_redirects] = { }
+default[:lighttpd][:modules] = [ "mod_access", "mod_alias", "mod_accesslog", "mod_rewrite", "mod_redirect", "mod_status", "mod_compress", "mod_expire" ]
+default[:lighttpd][:access_deny] = [ "~", ".inc" ]
