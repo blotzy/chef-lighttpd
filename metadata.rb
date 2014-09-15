@@ -172,3 +172,13 @@ attribute "lighttpd/access_deny",
   :display_name => "access deny",
   :description => "file types to access deny",
   :default => [ "~", ".inc" ]
+
+attribute "lighttpd/debian/restart"
+  :display_name => "debian restart"
+  :description => "restart command for lighttpd on debian systems"
+  :default => "/usr/sbin/invoke-rc.d lighttpd restart && sleep 1"
+
+attribute "lighttpd/debian/reload"
+  :display_name => "debian reload"
+  :description => "reload command for lighttpd on debian systems"
+  :default => "/usr/sbin/invoke-rc.d lighttpd reload && sleep 1"

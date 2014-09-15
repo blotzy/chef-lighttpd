@@ -23,11 +23,11 @@ end
 
 service "lighttpd" do
   # need to support more platforms, someday, when I have the time
-case node[:platform]
+  case node[:platform]
   when "debian","ubuntu"
     service_name "lighttpd"
-    restart_command "/usr/sbin/invoke-rc.d lighttpd restart && sleep 1"
-    reload_command "/usr/sbin/invoke-rc.d lighttpd restart && sleep 1"
+    restart_command node[:lighttpd][:debian][:restart]
+    reload_command node[:lighttpd][:debian][:reload]
   end
   supports value_for_platform(
     "debian" => { "4.0" => [ :restart, :reload ], "default" => [ :restart, :reload, :status ] },
