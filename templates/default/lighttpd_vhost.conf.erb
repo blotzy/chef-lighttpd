@@ -1,11 +1,18 @@
 $HTTP["host"] == "<%= @params[:server_name] %>" {
         server.document-root = "<%= @params[:doc_root] %>"
         dir-listing.activate = "<%= @params[:dir_listing] %>"
-		<% unless @params[:url_rewrites].nil? %>
+        <% unless @params[:url_rewrites].nil? %>
         url.rewrite = (
         <% @params[:url_rewrites].each_pair do |old, new| %>
           <%= "  \"^#{old}\" => \"#{new}\"," %>
         <% end %>
         )
-		<% end %>
+        <% end %>
+        <% unless @params[:url_redirect].nil? %>
+        url.redirect = (
+        <% @params[:url_redirect].each_pair do |old, new| %>
+          <%= "  \"^#{old}\" => \"#{new}\"," %>
+        <% end %>
+        )
+        <% end %>
 }
