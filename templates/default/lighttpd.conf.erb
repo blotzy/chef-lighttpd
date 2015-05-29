@@ -178,6 +178,10 @@ $HTTP["remoteip"] =~ "127.0.0.1" {
 ## array merge
 #index-file.names = (foo + ".php") + index-file.names
 #index-file.names += (foo + ".php")
+#
+<% node[:lighttpd][:directives].each do |directive, value| -%>
+<%= "#{directive} = #{value}" %>
+<% end -%>
 
 #### external configuration files
 ## mimetype mapping
