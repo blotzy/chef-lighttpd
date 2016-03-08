@@ -15,4 +15,15 @@ $HTTP["host"] == "<%= @params[:server_name] %>" {
         <% end %>
         )
         <% end %>
+        <% unless @params[:ssl].nil? %>
+        <%= "$SERVER[\"socket\"] == \":#{@params[:ssl][:port]}\" {"%>
+        <% # assumes mod_setenv is loaded %>
+        <%= "  setenv.add-request-header = (" %>
+        <%= "    \"X_FORWARDED_PROTOCOL\" => \"https\"" %>
+        <%= "  )," %>
+        <%= "  ssl.engine = \"enable\"," %>
+        <%= "  ssl.ca-file = \"#{@params[:ssl][:cafile]}\"," %>
+        <%= "  ssl.pemfile = \"#{@params[:ssl][:pemfile]}\"" %>
+        <%= "}" %>
+        <% end %>
 }
